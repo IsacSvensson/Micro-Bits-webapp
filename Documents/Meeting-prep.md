@@ -1,7 +1,6 @@
 # Project 2:BBC MicroBits Sensors
 
 Preparing documents for meetings
-
  
 ## Meeting 1 - 2020-09-10, 15:45
 * What, how and by who will this app be used by? And in what purpose.
