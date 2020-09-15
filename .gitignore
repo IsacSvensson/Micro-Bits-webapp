@@ -1,3 +1,18 @@
 # Binary files
 *.xlsx
 *.docx
+
+webapp/flaskTutorial/venv/
+
+*.pyc
+webapp/flaskTutorial/__pycache__/
+
+webapp/flaskTutorial/instance/
+
+webapp/flaskTutorial/.pytest_cache/
+webapp/flaskTutorial/.coverage
+webapp/flaskTutorial/htmlcov/
+
+webapp/flaskTutorial/dist/
+webapp/flaskTutorial/build/
+*.egg-info/
