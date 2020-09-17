@@ -1,0 +1,36 @@
+@startuml
+
+title Webapp for Micro:bit
+
+package  UI{
+    component Authentication
+    component "Room Administrator"
+    component "Room View"
+}
+database sqlite{
+    component User
+    component Room
+    component "Micro:bit"
+    component History
+}
+package "Backend" {
+    component "Flask Framework"
+    component "Micro:bit Handler"
+    component "Database Handler"
+}
+
+interface "Micro:bit" as MB
+
+[Micro:bit Handler] <- MB
+UI <--> [Flask Framework]
+sqlite <-> [Database Handler] 
+[Flask Framework] <--> [Database Handler]
+[Flask Framework] <-- [Micro:bit Handler]
+[Micro:bit Handler] <--> [Database Handler]
+UI --[hidden]-- [Database Handler]
+Backend -[hidden]-- sqlite
+
+Room <-- [Micro:bit]
+History <- [Micro:bit]
+
+@enduml

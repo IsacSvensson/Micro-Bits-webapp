@@ -2,17 +2,17 @@
 *.xlsx
 *.docx
 
-webapp/flaskTutorial/venv/
+webapp/flaskTutorial/
 
 *.pyc
-webapp/flaskTutorial/__pycache__/
+webapp/mb-app/__pycache__/
 
-webapp/flaskTutorial/instance/
+webapp/mb-app/instance/
 
-webapp/flaskTutorial/.pytest_cache/
-webapp/flaskTutorial/.coverage
-webapp/flaskTutorial/htmlcov/
+webapp/mb-app/.pytest_cache/
+webapp/mb-app/.coverage
+webapp/mb-app/htmlcov/
 
-webapp/flaskTutorial/dist/
-webapp/flaskTutorial/build/
+webapp/mb-app/dist/
+webapp/mb-app/build/
 *.egg-info/
