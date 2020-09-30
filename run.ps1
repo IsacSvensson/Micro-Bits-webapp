@@ -1,17 +1,40 @@
-cd webapp
-start-process -WindowStyle hidden python "..\microbit-module\main.py"
-start-process -WindowStyle hidden python "..\websocket\websocket.py"
-Start-Process -WindowStyle hidden PowerShell -ArgumentList 'flask run --host=0.0.0.0'
-
-$title   = 'Microbit Monitoring Web app is running'
-$msg     = 'Do you want to turn off the app?'
+$title1   = 'Microbit Monitoring Web app is starting'
+$msg1     = 'Do you want to display web-app, microbit-module and websocket server?'
 $options = '&Yes', '&No'
 $default = 1  # 0=Yes, 1=No
 $ran = 0
 
 do {
     if ($ran -eq 0) {
-        $response = $Host.UI.PromptForChoice($title, $msg, $options, $default)
+        $response = $Host.UI.PromptForChoice($title1, $msg1, $options, $default)
+        $ran = 1
+    }
+    else {
+        $response = Read-Host
+        $response = $response.toLower()
+    }
+} until (($response -eq 0 -or $response -eq 'y') -or ($response -eq 1 -or $response -eq 'n'))
+
+cd webapp
+if ($response -eq 1 -or $response -eq 'n') {
+    start-process -WindowStyle hidden python "..\microbit-module\main.py"
+    start-process -WindowStyle hidden python "..\websocket\websocket.py"
+    Start-Process -WindowStyle hidden PowerShell -ArgumentList 'flask run --host=0.0.0.0'
+}
+else{
+    start-process python "..\microbit-module\main.py"
+    start-process python "..\websocket\websocket.py"
+    Start-Process PowerShell -ArgumentList 'flask run --host=0.0.0.0'
+}
+$title2   = 'Microbit Monitoring Web app is running'
+$msg2     = 'Do you want to turn off the app?'
+$ran = 0
+
+Write-Host "`n===================================================================`n==================================================================="
+
+do {
+    if ($ran -eq 0) {
+        $response = $Host.UI.PromptForChoice($title2, $msg2, $options, $default)
         $ran = 1
     }
     else {
