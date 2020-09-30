@@ -6,7 +6,7 @@ html {
 }
 
 nav {
-    padding-left: 10px;
+    padding-left: 0;
     background-color: #484848;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
