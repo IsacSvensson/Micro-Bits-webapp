@@ -1,0 +1,235 @@
+html {
+    padding: 1em;
+    background-color: #181818;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+nav {
+    padding-left: 10px;
+    background-color: #484848;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    display: flex; 
+    align-items: center;
+}
+
+nav h1 { 
+    flex: auto; 
+    margin: 0;
+}
+nav h1 a {
+    text-decoration: none;
+    padding: 1rem 1rem;
+}
+
+nav ul li a {
+    color: #a8a8a8;
+}
+
+a, a:visited {
+    color: #cecece;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #181818;
+}
+
+.room-container a {
+    color: black;
+}
+
+.new-room-container a {
+    color: #737373;
+}
+
+nav ul  {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li a, nav ul li span, header .action {
+    display: block;
+    padding: 0.5rem;
+}
+
+body {
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    min-width: 640px;
+    min-height: 500px;
+    margin: 0 auto;
+    background: #808080;
+}
+.container .box {  
+    width:70vw;  
+    margin:50px;  
+    display:table;  
+}  
+.container .box .box-row {  
+    display:table-row;  
+}  
+.container .box .box-cell {  
+    display:table-cell;  
+    width:30vw;  
+    padding:10px;  
+}  
+.box-cell.box1 {  
+    border-radius: 5px;
+    display: inline-block;
+    width: 25%;
+    height: 60%;
+    min-height: auto;
+    background:#a8a8a8;
+    text-align:justify;  
+    vertical-align: top;
+    margin: auto 0px;
+}  
+.box-cell.box2 {  
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 40%;
+    max-height: 60%;
+    background:#d1d1d1;  
+    text-align:justify;
+    vertical-align: top;
+    margin-bottom: 20px;
+}  
+.box-cell.box3 {  
+    border-radius: 5px;
+    display: inline-block;
+    width: 25%;
+    height: 60%;
+    min-height: 100px;
+    background:#a8a8a8;  
+    text-align:justify;
+    vertical-align: top;  
+    margin-bottom: 20px;
+} 
+
+.box-top {
+    padding: 2px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #484848;
+}
+
+.room-container {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    background-color: #d0d0d0;
+    border: #484848 solid;
+    color: #484848;
+    font-weight: bold;
+}
+
+.new-room-container {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    background-color: #d0d0d0;
+    border: #484848 solid;
+    color: #484848;
+    font-weight: bold;
+}
+
+.microbit-container {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    background-color: #d0d0d0;
+    border: #484848 solid;
+    color: #484848;
+    font-weight: bold;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    margin: 1px 2px;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+#canvas1 {
+    display: inline-block;
+    width: 100%;
+    background:white;  
+    text-align:justify;
+    vertical-align: top;
+}
+
+.mb-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.mb-spec {
+    font-size: 0.7em;
+    font-style: italic;
+    margin: 0;
+}
+
+.inner-mb {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 10px;
+}
+
+#mb1 {
+    background-color: #0000FF;
+}
+
+#this-room {
+    text-decoration: underline;
+}
+
+.inner-p, .mb-spec {
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-right: 5px;
+}
+
+.user-table{
+    text-align: left;
+    width: 40%;
+}
+
+.edit-box {
+    border-radius: 5px;
+    display: inline-block;
+    width: 25%;
+    height: 60%;
+    min-height: auto;
+    background:#a8a8a8;
+    text-align:justify;  
+    vertical-align: top;
+    margin: auto 0px;
+}
+
+.flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #a8a8a8;
+    border: 1px solid #484848;
+    text-align: center;
+}
+
+.box-cell.box2 .box-top .edit-room {
+    display: inline-block;
+    margin: 0;
+}
+
+.mb-name a {
+    color: #181818;
+}

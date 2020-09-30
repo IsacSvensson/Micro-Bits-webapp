@@ -18,3 +18,7 @@
 * As a user I would like to get warnings if the room gets outside the allowed intervals of temperature and light. (Method not specified)
 * As a user I would like to se temperature and lightlevel in realtime (without having to reload page)
 * As a user I would like to be able to see historic information about highest and lowest temperature recorded per day in the room from up to a month back (but atleast 2 weeks)
+
+USERS FOR ADMIN
+View for all
+Config warnings

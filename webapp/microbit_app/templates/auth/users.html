@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<center>
+    <table class="user-table">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Action</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user['id']}}</td>
+                <td>{{ user['username']}}</td>
+                <td><a href="{{ url_for('auth.edit', id=user['id']) }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td><a href="{{ url_for('auth.register') }}">New User</a></td>
+        </tr>
+    </table>    
+</center>
+{% endblock %}
