@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %} {% endblock %}</h1>
+    <p style="visibility: hidden;">{% block title %}Login{% endblock %}</p>
 {% endblock %}
 
 {% block content %}
 <center>
     <div class="edit-box">  
-        <div class="box-top">Register new user</div>
+        <div class="box-top">Login</div>
         <table>
             <tr>
                 <form method="post">
@@ -30,25 +30,3 @@
     </div>
 </center>
 {% endblock %}
-
-
-        <table>
-            <tr>
-                <form method="post">
-                    <td><label for="username" class="login-form">Username</label></td>
-                    <td><input name="username" id="username"></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password</label></td>
-                <td><input type="password" name="password" id="password" required></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Register">
-                    </form>
-                </td>
-            </tr>
-            
-        </table>
-</div>

@@ -49,14 +49,18 @@ def register():
 def delete(id):
     db = get_db()
     error = None
-    if (len(db.execute("SELECT id FROM user;").fetchall()) <= 1):
-        error = "Error: You can not remove the last user."
-    else:
-        db.execute('DELETE FROM user WHERE id = ?', (id,))
-        db.commit()
-        return redirect(url_for('auth.users'))
-    flash(error)
-    return redirect(url_for('auth.users'))
+    if request.method == 'POST':
+        if not (db.execute("SELECT id FROM user WHERE id = ?;", (id,)).fetchone()):
+            error = "No user with this id"
+        elif (len(db.execute("SELECT id FROM user;").fetchall()) == 2):
+            error = len(db.execute("SELECT id FROM user;").fetchall())
+        else:
+            db.execute('DELETE FROM user WHERE id = ?', (id,))
+            db.commit()
+            return redirect(url_for('auth.users'))
+        flash(error)
+    users = db.execute("SELECT id, username FROM user;").fetchall()
+    return render_template('auth/users.html', users=users)
 
 @bp.route('/<int:id>/edit', methods=('GET', 'POST'))
 @login_required
@@ -108,7 +112,6 @@ def login():
             session.clear()
             session['user_id'] = user['id']
             return redirect(url_for('index'))
-
         flash(error)
 
     return render_template('auth/login.html')

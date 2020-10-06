@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<p style="visibility: hidden;">{% block title %}{{ thisRoom['description'] }}{% endblock %}</p>
+{% endblock %}
+
+{% block content %}
+    <body>
+        <center>
+            <div class="box-cell box1">  
+                <div class="box-top">Rooms</div>
+                {% for room in rooms %}
+                    <div class="room-container"><a href="{{ url_for('room.configRoom', id=room['id']) }}" {% if room['id'] == thisRoom['id'] %}id="this-room" title="{{room['id']}}"{% endif %}>{{ room['description'] }}</a></div>
+                {% endfor %}
+                {% if g.user %}
+                <div class="new-room-container"><a href="#">New room</a></div>
+                {% endif %}
+            </div>  
+            
+            <div class="box-cell box2" >
+                <div class="box-top">Configuration of room ({% if rooms %}{{ rooms[0]['description'] }}, {{ rooms[0]['width'] }}x{{ rooms[0]['deepth'] }}m  {% else %}No selected room{% endif %}){% if g.user %} <p class="edit-room"><a href="#">Edit</a></p> {% endif %}</div>
+                <div class="config">
+                    <form action="/room/{{ thisRoom['id'] }}" method="POST">
+                    <table>
+                        <tr>
+                            <th><label for="room-id">Room id</label></th>
+                            <th><label for="description">Description</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="room-id" value="{{ thisRoom['id']}}" readonly></td>
+                            <td><input type="text" name="description" value="{{thisRoom['description']}}" required></td>
+                        </tr>
+                        <tr>
+                            <th><label for="width">Width</label></th>
+                            <th><label for="deepth">Deepth</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="width" min="0" value="{{thisRoom['width']}}" step="0.1"></td>
+                            <td><input type="number" name="deepth" min="0" value="{{thisRoom['deepth']}}" step="0.1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="submit" value="Submit Changes"></td>
+                        </form>
+                        <form action="{{ url_for('room.deleteRoom', id=thisRoom['id'])}}">
+                            <td><input type="submit" name="deleteroom" value="Delete Room"></td>
+                        </form>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+            <div class="box-cell box3">  
+                <div class="box-top">Micro:bits</div>
+                {% for microbit in microbits %}
+                {% if microbit['room'] == thisRoom['id'] %}
+                    <div class="microbit-container">
+                        <div class="inner-mb">
+                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
+                        </div>
+                        <div class="inner-mb">
+                            <div><a class="mb-spec" href="{{ url_for('room.deleteMicroBit', id=microbit['id'], room=thisRoom['id']) }}">Remove</a></div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+                <div class="microbit-container">
+                    <div class="inner-mb">
+                        <form action="{{ url_for('room.addMicroBit', id=thisRoom['id']) }}" method="POST">
+                            <select name="microbit" id="microbit">
+                                {% for microbit in microbits %}
+                                    {% if microbit['room'] != thisRoom['id'] %}
+                                    <option value="{{ microbit['id'] }}">{{ microbit['id'] }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                    </div>
+                    <div class="inner-mb">
+                        <div>
+                            <input type="submit" value="Add microbit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </body>
+{% endblock %}

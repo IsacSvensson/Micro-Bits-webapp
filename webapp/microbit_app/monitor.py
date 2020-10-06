@@ -31,3 +31,9 @@ def room(id):
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
 
     return render_template('monitor/room.html', thisRoom = room, rooms = rooms, microbits = microbits, colors=colors)
+
+@bp.route('/history')
+def history():
+    db = get_db()
+    history = db.execute("SELECT * FROM history;")
+    return render_template('monitor/history.html', history=history)

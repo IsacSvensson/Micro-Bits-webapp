@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %} {% endblock %}</h1>
+<p style="visibility: hidden;">{% block title %}{% if rooms %}{{ rooms[0]['description']}}{% endif %}{% endblock %}</p>
 {% endblock %}
 
 {% block content %}
     {% set i = 0 %}
-    <body onload="loadCanvas({{ rooms[0]['width']}}, {{ rooms[0]['deepth']}}, [{% for microbit in microbits %}[{% if microbit['room'] == rooms[0]['id'] %}'{{ colors[loop.index] }}', {{microbit['position_x']}}, {{microbit['position_y']}}{% endif %}]{% if not loop.last %}, {% endif %}{% endfor %}])">
+    <body {% if rooms %} onload="loadCanvas({{ rooms[0]['width']}}, {{ rooms[0]['deepth']}}, [{% for microbit in microbits %}[{% if microbit['room'] == rooms[0]['id'] %}'{{ colors[loop.index] }}', {{microbit['position_x']}}, {{microbit['position_y']}}{% endif %}]{% if not loop.last %}, {% endif %}{% endfor %}])"{% endif %}>
         <center>
             <div class="box-cell box1">  
                 <div class="box-top">Rooms</div>
@@ -14,12 +14,12 @@
                     <div class="room-container"><a href="{{ url_for('monitor.room', id=room['id']) }}" {% if loop.index == 1 %}id="this-room" title="{{room['id']}}"{% endif %}>{{ room['description'] }}</a></div>
                 {% endfor %}
                 {% if g.user %}
-                <div class="new-room-container"><a href="#">New room</a></div>
+                <div class="new-room-container"><a href="{{ url_for('room.newRoom') }}">New room</a></div>
                 {% endif %}
             </div>  
             
             <div class="box-cell box2" >
-                <div class="box-top">Visualization of room ({% if rooms %}{{ rooms[0]['description'] }}, {{ rooms[0]['width'] }}x{{ rooms[0]['deepth'] }}m  {% else %}No selected room{% endif %}){% if g.user %} <p class="edit-room"><a href="#">Edit</a></p> {% endif %}</div>
+                <div class="box-top">{% if rooms %}Visualization of room ({{ rooms[0]['description'] }}, {{ rooms[0]['width'] }}x{{ rooms[0]['deepth'] }}m)  {% else %}No selected room{% endif %}{% if rooms %}{% if g.user %} <p class="edit-room"><a href="{{ url_for('room.configRoom', id=rooms[0]['id']) }}">Edit</a></p> {% endif %}{% endif %}</div>
                 <canvas id="canvas1"> 
                 </canvas>
             </div>
@@ -27,9 +27,10 @@
             <div class="box-cell box3">  
                 <div class="box-top">Micro:bits</div>
                 {% for microbit in microbits %}
+                {% if microbit['room'] == rooms[0]['id'] %}
                     <div class="microbit-container">
                         <div class="inner-mb">
-                            <p class="mb-name" id="mb1-name"><span class="dot" id="{{ microbit['id'] }}"></span><a href="#">{{ microbit['id'] }}</a></p>
+                            <p class="mb-name" id="mb1-name"><span class="dot" id="{{ microbit['id'] }}"></span><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
                         </div>
                         <div class="inner-mb">
                             <div><p class="mb-spec">Status: </p><p class="inner-p" id="{{microbit['id']}}-status">{{ microbit['status'] }}</p></div>
@@ -37,6 +38,7 @@
                             <div><p class="mb-spec" id="{{microbit['id']}}-l">Light: </p><p class="inner-p" id="{{microbit['id']}}-light">-</p></div>
                         </div>
                     </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </center>

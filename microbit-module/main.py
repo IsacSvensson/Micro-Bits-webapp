@@ -33,6 +33,8 @@ if __name__ == "__main__":
             if (mb.testConnection()):
                 mb.readValues()
                 checkChanges(mb, newDate)
+            elif not knownMBs: 
+                pass
             else:
                 if mb.devName in knownMBs and mb.active:
                     db.dbSetStatus(mb, "Not active")

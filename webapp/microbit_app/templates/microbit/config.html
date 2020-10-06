@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<p style="visibility: hidden;">{% block title %}{{ thisMb['id'] }}{% endblock %}</p>
+{% endblock %}
+
+{% block content %}
+    <body>
+        <center>
+            <div class="box-cell box1">  
+                <div class="box-top">Rooms</div>
+                {% for room in rooms %}
+                    <div class="room-container"><a href="{{ url_for('room.configRoom', id=room['id']) }}">{{ room['description'] }}</a></div>
+                {% endfor %}
+                {% if g.user %}
+                <div class="new-room-container"><a href="#">New room</a></div>
+                {% endif %}
+            </div>  
+            
+            <div class="box-cell box2" >
+                <div class="box-top">Configuration of Micro:Bit - {{ thisMb['id'] }}</div>
+                <div class="config">
+                    <form action="/microbit/{{ thisMb['id'] }}" method="POST">
+                    <table>
+                        <tr>
+                            <th><label for="mb_id">ID</label></th>
+                            <th><label for="description">Description</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="mb_id" value="{{ thisMb['id']}}" readonly></td>
+                            <td><input type="text" name="description" value="{% if thisMb['name'] %}{{thisMb['name']}}{% endif %}"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="xpos">X-axis Position</label></th>
+                            <th><label for="ypos">Y-axis Position</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="xpos" min="0" value="{% if thisMb['position_x'] %}{{thisMb['position_x']}}{% endif %}" step="0.1"></td>
+                            <td><input type="number" name="ypos" min="0" value="{% if thisMb['position_y'] %}{{thisMb['position_y']}}{% endif %}" step="0.1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="submit" value="Submit Changes"></td>
+                        </form>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+            <div class="box-cell box3">  
+                <div class="box-top">Micro:bits</div>
+                {% for microbit in microbits %}
+                    <div class="microbit-container">
+                        <div class="inner-mb">
+                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
+                        </div>
+                        <div class="inner-mb">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </center>
+    </body>
+{% endblock %}

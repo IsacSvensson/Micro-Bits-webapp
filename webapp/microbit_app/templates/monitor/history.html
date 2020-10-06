@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<p style="visibility: hidden;">{% block title %}History{% endblock %}</p>
+{% endblock %}
+
+{% block content %}
+    {% set i = 0 %}
+    <body>
+        <center>
+            <div class="history-box">  
+                <div class="box-top">History</div>
+                <input type="text" id="filter-s" onkeyup="filter()" placeholder="Filter on Micro:bit's ID" title="Filter result">
+                <table id="history-table">
+                    <tr class="table-header">
+                        <th>Date</th>
+                        <th>Micro:Bit</th>
+                        <th>Minimum temperature</th>
+                        <th>Maximum temperature</th>
+                        <th>Minimum Light</th>
+                        <th>Maximum Light</th>
+                    </tr>
+                    {% for row in history %}
+                    <tr>
+                        <td><p>{{row['date']}}</p></td>
+                        <td><p>{{row['microbit']}}</p></td>
+                        <td><p>{{row['min_temp']}}</p></td>
+                        <td><p>{{row['max_temp']}}</p></td>
+                        <td><p>{{row['min_light']}}</p></td>
+                        <td><p>{{row['max_light']}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </center>
+    </body>
+
+    <script>
+        function filter() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("filter-s");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("history-table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td");
+      for (j = 0; j < td.length; j++) {
+        if (td[j]) {
+            txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            break;
+            } else {
+            tr[i].style.display = "none";
+            }
+        }
+        }       
+    }
+  }
+    </script>
+
+{% endblock %}

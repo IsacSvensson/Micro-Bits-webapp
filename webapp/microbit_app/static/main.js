@@ -53,3 +53,4 @@ loadCanvas = (w, h, dots) => {
     });
     
 }
+
