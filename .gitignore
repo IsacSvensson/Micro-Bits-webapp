@@ -5,14 +5,15 @@
 webapp/flaskTutorial/
 
 *.pyc
-webapp/mb-app/__pycache__/
+webapp/webapp/__pycache__/
 
-webapp/mb-app/instance/
+webapp/webapp/instance/
 
-webapp/mb-app/.pytest_cache/
-webapp/mb-app/.coverage
-webapp/mb-app/htmlcov/
+webapp/webapp/.pytest_cache/
+webapp/webapp/.coverage
+webapp/webapp/htmlcov/
 
-webapp/mb-app/dist/
-webapp/mb-app/build/
+webapp/webapp/dist/
+webapp/webapp/build/
 *.egg-info/
+*/pytest_cache/
