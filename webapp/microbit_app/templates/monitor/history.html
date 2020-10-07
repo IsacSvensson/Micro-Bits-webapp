@@ -21,13 +21,13 @@
                         <th>Maximum Light</th>
                     </tr>
                     {% for row in history %}
-                    <tr>
-                        <td><p>{{row['date']}}</p></td>
-                        <td><p>{{row['microbit']}}</p></td>
-                        <td><p>{{row['min_temp']}}</p></td>
-                        <td><p>{{row['max_temp']}}</p></td>
-                        <td><p>{{row['min_light']}}</p></td>
-                        <td><p>{{row['max_light']}}</p></td>
+                    <tr class="row{{loop.index % 2}}">
+                        <td>{{row['date']}}</td>
+                        <td>{{row['microbit']}}</td>
+                        <td>{{row['min_temp']}}</td>
+                        <td>{{row['max_temp']}}</td>
+                        <td>{{row['min_light']}}</td>
+                        <td>{{row['max_light']}}</td>
                     </tr>
                     {% endfor %}
                 </table>

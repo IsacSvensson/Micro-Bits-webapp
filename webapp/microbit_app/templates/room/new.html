@@ -13,7 +13,7 @@
                     <div class="room-container"><a href="{{ url_for('room.configRoom', id=room['id']) }}">{{ room['description'] }}</a></div>
                 {% endfor %}
                 {% if g.user %}
-                <div class="new-room-container"><a href="#">New room</a></div>
+                <div class="new-room-container"><a href="{{ url_for('room.newRoom') }}">New room</a></div>
                 {% endif %}
             </div>  
             

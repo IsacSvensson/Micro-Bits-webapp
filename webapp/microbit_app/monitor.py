@@ -35,5 +35,5 @@ def room(id):
 @bp.route('/history')
 def history():
     db = get_db()
-    history = db.execute("SELECT * FROM history;")
+    history = db.execute("SELECT * FROM history ORDER BY date DESC;")
     return render_template('monitor/history.html', history=history)

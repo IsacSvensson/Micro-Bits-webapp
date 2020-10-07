@@ -13,12 +13,12 @@
                     <div class="room-container"><a href="{{ url_for('room.configRoom', id=room['id']) }}" {% if room['id'] == thisRoom['id'] %}id="this-room" title="{{room['id']}}"{% endif %}>{{ room['description'] }}</a></div>
                 {% endfor %}
                 {% if g.user %}
-                <div class="new-room-container"><a href="#">New room</a></div>
+                <div class="new-room-container"><a href="{{ url_for('room.newRoom') }}">New room</a></div>
                 {% endif %}
             </div>  
             
             <div class="box-cell box2" >
-                <div class="box-top">Configuration of room ({% if rooms %}{{ rooms[0]['description'] }}, {{ rooms[0]['width'] }}x{{ rooms[0]['deepth'] }}m  {% else %}No selected room{% endif %}){% if g.user %} <p class="edit-room"><a href="#">Edit</a></p> {% endif %}</div>
+                <div class="box-top">Configuration of room ({% if rooms %}{{ rooms[0]['description'] }}, {{ rooms[0]['width'] }}x{{ rooms[0]['deepth'] }}m  {% else %}No selected room{% endif %})</div>
                 <div class="config">
                     <form action="/room/{{ thisRoom['id'] }}" method="POST">
                     <table>

@@ -14,7 +14,7 @@
                     <div class="room-container" ><a {% if room['id'] == thisRoom[0]['id'] %}id="this-room" title="{{ room['id'] }}" {% endif %} href="{{ url_for('monitor.room', id=room['id']) }}">{{ room['description'] }}</a></div>
                 {% endfor %}
                 {% if g.user %}
-                <div class="new-room-container"><a href="#">New room</a></div>
+                <div class="new-room-container"><a href="{{ url_for('room.newRoom') }}">New room</a></div>
                 {% endif %}
             </div>  
             

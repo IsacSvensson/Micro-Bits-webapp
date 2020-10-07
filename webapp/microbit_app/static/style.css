@@ -28,7 +28,7 @@ nav ul li a {
 }
 
 a, a:visited {
-    color: #cecece;
+    color: #878787;
     text-decoration: none;
     font-weight: bold;
 }
@@ -82,7 +82,7 @@ body {
     display: inline-block;
     width: 25%;
     height: 60%;
-    min-height: auto;
+    min-height: 100px;
     background:#a8a8a8;
     text-align:justify;  
     vertical-align: top;
@@ -232,4 +232,30 @@ body {
 
 .mb-name a {
     color: #181818;
+}
+
+#history-table, .table-header{
+    background-color: #484848;
+}
+
+.row1 {
+    background-color: #737373;
+}
+
+.row0 {
+    background-color: #a8a8a8;
+}
+
+#filter-s {
+    width: 99%;
+    text-align: center;
+}
+
+.history-box {
+    width: 60%;
+}
+
+#history-table{
+    width: 100%;
+    text-align: center;
 }

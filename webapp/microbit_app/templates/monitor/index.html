@@ -26,6 +26,7 @@
                 
             <div class="box-cell box3">  
                 <div class="box-top">Micro:bits</div>
+                {% if rooms %}
                 {% for microbit in microbits %}
                 {% if microbit['room'] == rooms[0]['id'] %}
                     <div class="microbit-container">
@@ -40,9 +41,11 @@
                     </div>
                 {% endif %}
                 {% endfor %}
+                {% endif %}
             </div>
         </center>
     </body>
+    {% if rooms %}
     <style type="text/css">
         {% for microbit in microbits %}
             {% if microbit['room'] == rooms[0]['id'] %}
@@ -51,4 +54,5 @@
         }{% endif %}
         {% endfor %}
     </style>
+    {% endif %}
 {% endblock %}
