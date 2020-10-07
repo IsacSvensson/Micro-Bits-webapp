@@ -3,15 +3,14 @@
 *.docx
 
 *.pyc
-webapp/__pycache__/
+*/instance/
+*/.pytest_cache/
+.coverage
+*htmlcov/
 
-webapp/instance/
-
-webapp/.pytest_cache/
-webapp/.coverage
-webapp/htmlcov/
-
-webapp/dist/
-webapp/build/
+*/dist/
+*/build/
 *.egg-info/
 */pytest_cache/
+
+/Documents/
