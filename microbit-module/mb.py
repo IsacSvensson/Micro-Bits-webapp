@@ -11,7 +11,7 @@ class MicroBit:
         self.connection.baudrate = 9600
         self.connection.port = port
         # Current data:
-        self.devName = None
+        self.devName = str()
         self.temp = None
         self.light = None
         self.active = False
@@ -20,7 +20,13 @@ class MicroBit:
         self.maxTemp = None
         self.minLight = None
         self.maxLight = None
-    
+        self.lowTemp = None
+        self.highTemp = None
+        self.tempWarning = False
+        self.lowLight = None
+        self.highLight = None
+        self.lightWarning = False
+        self.mail = None
     def testConnection(self):
         """
         Tests the connection over given port
@@ -31,7 +37,7 @@ class MicroBit:
                 self.active = True
                 db.dbSetStatus(self, 'Active')
         except SerialException:
-            print("> Test Failed: Could not access the given port {}".format(self.connection.port))
+            # print("> Test Failed: Could not access the given port {}".format(self.connection.port))
             if self.active is True:
                 self.active = False
                 db.dbSetStatus(self, 'Not active')

@@ -35,10 +35,30 @@
                             <th><label for="ypos">Y-axis Position</label></th>
                         </tr>
                         <tr>
-                            <td><input type="number" name="xpos" min="0" value="{% if thisMb['position_x'] %}{{thisMb['position_x']}}{% endif %}" step="0.1"></td>
-                            <td><input type="number" name="ypos" min="0" value="{% if thisMb['position_y'] %}{{thisMb['position_y']}}{% endif %}" step="0.1"></td>
+                            <td><input type="number" name="xpos" min="0" value="{% if thisMb['position_x'] == -1  %}{% elif thisMb['position_x'] %}{{thisMb['position_x']}}{% endif %}" step="0.1"></td>
+                            <td><input type="number" name="ypos" min="0" value="{% if thisMb['position_y'] == -1  %}{% elif thisMb['position_y'] %}{{thisMb['position_y']}}{% endif %}" step="0.1"></td>
                         </tr>
                         <tr>
+                            <th><label for="min-light">Min allowed temperature</label></th>
+                            <th><label for="max-temp">Max allowed temperature</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="min-temp" value="{% if thisMb['min_temp'] %}{{thisMb['min_temp']}}{% endif %}"></td>
+                            <td><input type="number" name="max-temp" value="{% if thisMb['max_temp'] %}{{thisMb['max_temp']}}{% endif %}"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="min-light">Min allowed light level</label></th>
+                            <th><label for="max-light">Max allowed light level</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="number" name="min-light" value="{% if thisMb['min_light'] %}{{thisMb['min_light']}}{% endif %}"></td>
+                            <td><input type="number" name="max-light" value="{% if thisMb['max_light'] %}{{thisMb['max_light']}}{% endif %}"></td>
+                        </tr>
+                        <tr>
+                            <th><label for="email">Email Reciever</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="email" id="email" name="email" value="{% if thisMb['mail'] %}{{thisMb['mail']}}{% endif %}"></td>
                             <td><input type="submit" name="submit" value="Submit Changes"></td>
                         </form>
                         </tr>

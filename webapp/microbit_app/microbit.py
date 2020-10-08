@@ -16,7 +16,22 @@ def configMicroBit(id):
         name = request.form['description']
         x = request.form['xpos']
         y = request.form['ypos']
-        db.execute("UPDATE microbit SET name = ?, position_x = ?, position_y = ? WHERE id = ?", (name, x, y,id,))
+        minTemp = request.form['min-temp']
+        maxTemp = request.form['max-temp']
+        minLight = request.form['min-light']
+        maxLight = request.form['max-light']
+        mail = request.form['email']
+        db.execute('''UPDATE microbit 
+                    SET 
+                        name = ?, 
+                        position_x = ?, 
+                        position_y = ?, 
+                        min_temp = ?,
+                        max_temp = ?,
+                        min_light = ?,
+                        max_light = ?,
+                        mail = ?
+                    WHERE id = ?''', (name, x, y, minTemp, maxTemp, minLight, maxLight, mail, id,))
         db.commit()
 
     thisMb = db.execute("SELECT * FROM microbit WHERE id = ?;", (id, )).fetchone()
@@ -57,26 +72,3 @@ def addMicroBit(id):
     rooms = db.execute("SELECT * FROM room;").fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
     return render_template('room/config.html', microbits = microbits, thisRoom=thisRoom, rooms = rooms)
-
-@bp.route('/new', methods=('GET', 'POST'))
-@login_required
-def newRoom():
-    db = get_db()
-    if request.method == 'POST':
-        error = None
-        description = request.form['description']
-        if description is None:
-            error = "Room needs a description"
-        elif description in db.execute('SELECT description FROM room;').fetchall():
-            error = "Description is used for another room"
-        else:
-            width = request.form['width']
-            deepth = request.form['deepth']
-            db.execute("INSERT INTO room (description, width, deepth) VALUES (?,?,?);", (description,width,deepth,))
-            db.commit()
-
-            newroom = db.execute('SELECT id FROM room WHERE description = ?;', (description,)).fetchone()
-            return redirect(url_for('monitor.room', id=newroom['id']))
-        flash(error)
-    rooms = db.execute("SELECT * FROM room;").fetchall()
-    return render_template('room/new.html', rooms=rooms)

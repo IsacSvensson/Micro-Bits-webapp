@@ -1,10 +1,18 @@
+import os
+from pathlib import Path
+import json
 from time import sleep
 from datetime import date
-from main_funcs import *
+from main_funcs import checkChanges, listenForNewMB, checkKnown, checkIntervals
+import microbit_db as db
+from mb import MicroBit
 
 if __name__ == "__main__":
     # List of all possible COM-ports
-    ports = ["COM3", "COM4"]
+    with open(os.path.join(Path(__file__).parent.absolute(), 'config.json')) as json_file:
+        data = json.load(json_file)
+    ports = data['ports']
+
     microBits = list()
     for port in ports:
         # Creates a class instance for each port in list
@@ -38,5 +46,7 @@ if __name__ == "__main__":
             else:
                 if mb.devName in knownMBs and mb.active:
                     db.dbSetStatus(mb, "Not active")
+            if mb.active:
+                checkIntervals(mb)
         sleep(1)
         prevDate = newDate

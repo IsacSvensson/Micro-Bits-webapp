@@ -70,6 +70,12 @@ def getMicroBits():
         toReturn = c.execute("SELECT id FROM microbit;").fetchall()
     return toReturn
 
+def getMicroBit(id):
+    db = get_db()
+    with db as c:
+        toReturn = c.execute("SELECT * FROM microbit WHERE id = ?;", (id,)).fetchone()
+    return toReturn
+
 def getHistory():
     thisDate = date.today().strftime("%Y-%m-%d")
     db = get_db()

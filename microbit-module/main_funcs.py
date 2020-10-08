@@ -1,5 +1,6 @@
 from mb import MicroBit
 import microbit_db as db
+from mailmodule import mail
 
 def checkChanges(mb, date):
     """
@@ -99,3 +100,30 @@ def listenForNewMB(microBits, knownMBs):
                     knownMBs.append(mb.devName)
                     setHistory(mb)
     return knownMBs
+
+def checkIntervals(mbObj):
+    mb = db.getMicroBit(mbObj.devName)
+    mbObj.lowTemp = mb[8] if mb[8] else 0
+    mbObj.highTemp = mb[10] if mb[10] else 100
+    mbObj.lowLight = mb[9] if mb[9] else 0
+    mbObj.highLight = mb[11] if mb[11] else 256
+    mbObj.mail = mb[12]
+
+
+    if mbObj.mail:
+        print("{},{},{},{}".format(mbObj.devName, mbObj.temp, mbObj.lowTemp, mbObj.highTemp))
+        if ((mbObj.temp < mbObj.highTemp) and (mbObj.temp > mbObj.lowTemp)):
+            mbObj.tempWarning = False
+            print('temp normal')
+        elif not mbObj.tempWarning and (mbObj.temp < mbObj.lowTemp):
+            mbObj.tempWarning = mail.sendWarning("temperature", "lower", mbObj.devName, mbObj.mail)
+        elif not mbObj.tempWarning and (mbObj.temp > mbObj.highTemp):
+            mbObj.tempWarning = mail.sendWarning("temperature", "higher", mbObj.devName, mbObj.mail)
+
+        if (mbObj.light < mbObj.highLight) and (mbObj.light > mbObj.lowLight):
+            mbObj.lightWarning = False
+            print("light normal")
+        elif not mbObj.lightWarning and (mbObj.light < mbObj.lowLight):
+            mbObj.lightWarning = mail.sendWarning("light level", "lower", mbObj.devName, mbObj.mail)
+        elif not mbObj.lightWarning and (mbObj.light > mbObj.highLight):
+            mbObj.lightWarning = mail.sendWarning("light level", "higher", mbObj.devName, mbObj.mail)

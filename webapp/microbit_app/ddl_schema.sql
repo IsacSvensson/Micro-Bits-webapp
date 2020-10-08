@@ -23,9 +23,14 @@ CREATE TABLE microbit (
     'room' INTEGER,
     'temp' INTEGER,
     'light' INTEGER,
-    'position_x' FLOAT,
-    'position_y' FLOAT,
+    'position_x' FLOAT DEFAULT -1,
+    'position_y' FLOAT DEFAULT -1,
     'status' TEXT NOT NULL,
+    'min_temp' INTEGER,
+    'min_light' INTEGER,
+    'max_temp' INTEGER,
+    'max_light' INTEGER,
+    'mail' VARCHAR(320),
     
     FOREIGN KEY ('room') REFERENCES room ('id')
 );
