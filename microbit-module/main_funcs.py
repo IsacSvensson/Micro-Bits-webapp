@@ -111,7 +111,7 @@ def checkIntervals(mbObj):
 
 
     if mbObj.mail:
-        print("{},{},{},{}".format(mbObj.devName, mbObj.temp, mbObj.lowTemp, mbObj.highTemp))
+        print("{},{},{},{},{}".format(mbObj.devName, mbObj.temp, mbObj.lowTemp, mbObj.highTemp, mbObj.tempWarning))
         if ((mbObj.temp < mbObj.highTemp) and (mbObj.temp > mbObj.lowTemp)):
             mbObj.tempWarning = False
             print('temp normal')
@@ -119,6 +119,7 @@ def checkIntervals(mbObj):
             mbObj.tempWarning = mail.sendWarning("temperature", "lower", mbObj.devName, mbObj.mail)
         elif not mbObj.tempWarning and (mbObj.temp > mbObj.highTemp):
             mbObj.tempWarning = mail.sendWarning("temperature", "higher", mbObj.devName, mbObj.mail)
+            print(mbObj.tempWarning)
 
         if (mbObj.light < mbObj.highLight) and (mbObj.light > mbObj.lowLight):
             mbObj.lightWarning = False

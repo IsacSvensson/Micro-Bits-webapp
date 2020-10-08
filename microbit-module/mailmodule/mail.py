@@ -34,14 +34,14 @@ def sendWarning(what, level, microbit, receiver_address):
     message.attach(MIMEText(mail_content, 'plain'))
     #Create SMTP session for sending the mail
     try:
-        session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+        session = smtplib.SMTP('smtp.gmail.com', data['port'])
     except:
         print('Not able to send e-mail')
-        return True
+        return False
     session.starttls() #enable security
     session.login(sender_address, sender_pass) #login with mail_id and password
     text = message.as_string()
     session.sendmail(sender, receiver_address, text)
     session.quit()
     print('Warning sent to {}'.format(receiver_address))
-    return False
+    return True
