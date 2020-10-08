@@ -147,8 +147,8 @@ Project Link: [https://github.com/IsacSvensson/Micro-Bits-webapp](https://github
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [product-screenshot]: Img/screendump.PNG?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[after-init]: img/newly-init.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[new-room]: img/new-room.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[add-mb]: img/add-mb.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[config-mb]: img/config-mb.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[done]: img/done.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[after-init]: Img/newly-init.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[new-room]: Img/new-room.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[add-mb]: Img/add-mb.png?token=ANSQI3QNL63MHM3LEAO7NHC7RBMBS
+[config-mb]: Img/config-mb.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[done]: Img/done.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
