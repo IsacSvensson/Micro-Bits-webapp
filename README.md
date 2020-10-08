@@ -149,6 +149,6 @@ Project Link: [https://github.com/IsacSvensson/Micro-Bits-webapp](https://github
 [product-screenshot]: Img/screendump.PNG
 [after-init]: Img/newly-init.png
 [new-room]: Img/new-room.png
-[add-mb]: Img/add-mb.png?token=ANSQI3QNL63MHM3LEAO7NHC7RBMBS
+[add-mb]: Img/add-mb.png
 [config-mb]: Img/config-mb.png
 [done]: Img/done.png
