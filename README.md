@@ -146,7 +146,7 @@ Isac Svensson - isac.m.svensson@gmail.com
 Project Link: [https://github.com/IsacSvensson/Micro-Bits-webapp](https://github.com/IsacSvensson/Micro-Bits-webapp)
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: img/screendump.png
+[product-screenshot]: https://raw.githubusercontent.com/IsacSvensson/Micro-Bits-webapp/master/Img/screendump.PNG?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
 [after-init]: img/newly-init.png
 [new-room]: img/new-room.png
 [add-mb]: img/add-mb.png
