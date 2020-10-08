@@ -1,5 +1,6 @@
 {
     "name":"Microbit-Monitoring System (No reply)",
     "e-mail":"example@email.com",
-    "password":"Enter your password here"
+    "password":"Enter password here",
+    "port": Enter port here, eg gmails: 587
 }
