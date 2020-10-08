@@ -17,7 +17,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![product-screenshot]
 
 Micro:Bits webapp is a app where you can connect multiple Micro:Bit to a system where you can monitor temperature and light level. 
 It was built as project for a custommer in the fall 2020 at Bleking Institution of Technology (BTH).
@@ -146,9 +146,9 @@ Isac Svensson - isac.m.svensson@gmail.com
 Project Link: [https://github.com/IsacSvensson/Micro-Bits-webapp](https://github.com/IsacSvensson/Micro-Bits-webapp)
 
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: https://raw.githubusercontent.com/IsacSvensson/Micro-Bits-webapp/master/Img/screendump.PNG?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
-[after-init]: img/newly-init.png
-[new-room]: img/new-room.png
-[add-mb]: img/add-mb.png
-[config-mb]: img/config-mb.png
-[done]: img/done.png
+[product-screenshot]: Img/screendump.PNG?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[after-init]: img/newly-init.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[new-room]: img/new-room.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[add-mb]: img/add-mb.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[config-mb]: img/config-mb.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
+[done]: img/done.png?token=ANSQI3SAVHRLIMI43SUIOXC7RBLZU
