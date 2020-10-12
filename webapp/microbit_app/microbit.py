@@ -3,8 +3,8 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from webapp.microbit_app.db import get_db
-from webapp.microbit_app.auth import login_required
+from microbit_app.db import get_db
+from microbit_app.auth import login_required
 
 bp = Blueprint('microbit', __name__, url_prefix='/microbit')
 

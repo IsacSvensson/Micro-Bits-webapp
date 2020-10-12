@@ -3,8 +3,8 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from webapp.microbit_app.auth import login_required
-from webapp.microbit_app.db import get_db
+from microbit_app.auth import login_required
+from microbit_app.db import get_db
 
 bp = Blueprint('monitor', __name__)
 
