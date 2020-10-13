@@ -37,18 +37,17 @@ def init_demo():
         db.executescript(f.read().decode('utf8'))
 
 @click.command('init-db')
+@click.argument('demo', default='')
 @with_appcontext
-def init_db_command():
-    """Clear the existing data and create new tables"""
-    init_db()
-    click.echo('Initialized the database')
+def init_db_command(demo):
+    """Create clean database with admin ('init-db demo' for demo data)"""
+    if demo.lower() == "demo":
+        init_demo()
+        click.echo('Initialized the database with demo data')
+    else:
+        init_db()
+        click.echo('Initialized the database')
 
-@click.command('init-demo')
-@with_appcontext
-def init_db_command():
-    """Clear the existing data and create new tables with demo data"""
-    init_demo()
-    click.echo('Initialized the database with demo data')
 
 def init_app(app):
     app.teardown_appcontext(close_db)

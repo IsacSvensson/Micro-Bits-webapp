@@ -92,6 +92,7 @@ Rename-Item -Path ".\microbit-module\mailmodule\cred-template.json" -NewName "cr
 Copy-Item ".\microbit-module\microbit-instructions.hex" -Destination "d:\"
 ```
 8. Initialize Database
+*(To create demo data you can open 'init.ps1' in a text editor and add demo after the line 'flask init-db')*
 ```sh
 init.ps1
 ```
