@@ -64,7 +64,7 @@ git clone https://github.com/your_username_/Project-Name.git
 ```
 2. Install dependencies
 ```sh
-python setup.py
+pip install click pytest Werkzeug Flask websockets pyserial
 ```
 3. Config what ports you are using for Micro:Bits (Pre-configured for Windows ports COM1 - COM10)<br>
 ("./microbit-module/config.json")
@@ -79,7 +79,7 @@ python setup.py
     "name":"Microbit-Monitoring System (No reply)",
     "e-mail":"example@email.com",
     "password":"Enter password here",
-    "port": "Enter port here, eg gmails: 587"
+    "port": Enter port here, eg gmails: 587
 }
 ```
 5. Change name on ".\creds-template.json" to "cred.json"

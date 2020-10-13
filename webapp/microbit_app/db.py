@@ -28,12 +28,27 @@ def init_db():
     with current_app.open_resource('dml.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
+def init_demo():
+    db = get_db()
+
+    with current_app.open_resource('ddl_schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+    with current_app.open_resource('dml_demo.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
     """Clear the existing data and create new tables"""
     init_db()
     click.echo('Initialized the database')
+
+@click.command('init-demo')
+@with_appcontext
+def init_db_command():
+    """Clear the existing data and create new tables with demodata"""
+    init_demo()
+    click.echo('Initialized the database with demo data')
 
 def init_app(app):
     app.teardown_appcontext(close_db)

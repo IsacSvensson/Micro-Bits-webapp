@@ -46,3 +46,8 @@ CREATE TABLE history (
 
     FOREIGN KEY ('microbit') REFERENCES microbit('id')
 );
+
+CREATE TRIGGER delete_old_history AFTER INSERT ON history
+BEGIN
+    DELETE FROM history WHERE date < DATE('now', '-14 day');
+END;

@@ -24,7 +24,7 @@ def sendWarning(what, level, microbit, receiver_address):
     sender_pass = data['password']
     #Setup the MIME
     message = MIMEMultipart()
-    message['From'] = sender_address
+    message['From'] = sender
 
     message['To'] = receiver_address
     name = 'gozip'
