@@ -46,7 +46,7 @@ def init_db_command():
 @click.command('init-demo')
 @with_appcontext
 def init_db_command():
-    """Clear the existing data and create new tables with demodata"""
+    """Clear the existing data and create new tables with demo data"""
     init_demo()
     click.echo('Initialized the database with demo data')
 
