@@ -3,6 +3,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.exceptions import abort
 from microbit_app.db import get_db
 from microbit_app.auth import login_required
 
@@ -22,6 +23,9 @@ def configRoom(id):
         db.commit()
 
     thisRoom = db.execute("SELECT * FROM room WHERE id = ?;", (id, )).fetchone()
+    if not thisRoom:
+        abort(404, description="404 - Room not found")
+
     rooms = db.execute("SELECT * FROM room;").fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
     return render_template('room/config.html', microbits = microbits, thisRoom=thisRoom, rooms = rooms)
@@ -39,10 +43,16 @@ def deleteRoom(id):
 def deleteMicroBit(id):
     db = get_db()
     oldRoom = db.execute("SELECT room FROM microbit WHERE id = ?;", (id, )).fetchone()
+    if not oldRoom:
+        abort(404, description="404 - Room not found")
+
     db.execute("UPDATE microbit SET room = 'NULL' WHERE id = ?;", (id, ))
     db.commit()
 
     thisRoom = db.execute("SELECT * FROM room WHERE id = ?;", (oldRoom['room'], )).fetchone()
+    if not thisRoom:
+        abort(404, description="404 - Room not found")
+
     rooms = db.execute("SELECT * FROM room;").fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
     return render_template('room/config.html', microbits = microbits, thisRoom=thisRoom, rooms = rooms)
@@ -56,6 +66,9 @@ def addMicroBit(id):
     db.commit()
 
     thisRoom = db.execute("SELECT * FROM room WHERE id = ?;", (id, )).fetchone()
+    if not thisRoom:
+        abort(404, description="404 - Room not found")
+
     rooms = db.execute("SELECT * FROM room;").fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
     return render_template('room/config.html', microbits = microbits, thisRoom=thisRoom, rooms = rooms)

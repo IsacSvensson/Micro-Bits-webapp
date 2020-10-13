@@ -3,6 +3,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.exceptions import abort
 from microbit_app.db import get_db
 from microbit_app.auth import login_required
 
@@ -35,6 +36,8 @@ def configMicroBit(id):
         db.commit()
 
     thisMb = db.execute("SELECT * FROM microbit WHERE id = ?;", (id, )).fetchone()
+    if not thisMb:
+        abort(404, description="404 - Micro:Bit not found")
     rooms = db.execute("SELECT * FROM room;").fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
     return render_template('microbit/config.html', microbits = microbits, thisMb=thisMb, rooms = rooms)

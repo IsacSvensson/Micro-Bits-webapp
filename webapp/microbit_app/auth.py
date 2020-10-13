@@ -3,6 +3,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.exceptions import abort
 from microbit_app.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -67,6 +68,9 @@ def delete(id):
 def edit(id):
     db =get_db()
     user = db.execute("SELECT id, username FROM user WHERE id = ?;", (id, )).fetchone()
+    if not user:
+        abort(404, description="404 - User not found")
+
     if request.method == 'POST':
         password = request.form['password']
         error = None

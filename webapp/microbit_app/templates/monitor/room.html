@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <p style="visibility: hidden;">{% block title %}{{ thisRoom[0]['description']}}{% endblock %}</p>
+  <p style="visibility: hidden;">{% block title %}{% if thisRoom %}{{ thisRoom[0]['description']}}{% endif %}{% endblock %}</p>
 {% endblock %}
 
 {% block content %}

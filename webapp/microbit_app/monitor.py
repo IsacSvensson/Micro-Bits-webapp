@@ -30,6 +30,9 @@ def room(id):
     rooms = get_db().execute('SELECT * FROM room;').fetchall()
     microbits = get_db().execute('SELECT * FROM microbit;').fetchall()
 
+    if not room:
+        abort(404, description="404 - Room not found")
+
     return render_template('monitor/room.html', thisRoom = room, rooms = rooms, microbits = microbits, colors=colors)
 
 @bp.route('/history')
