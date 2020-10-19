@@ -109,22 +109,39 @@ def checkIntervals(mbObj):
     mbObj.highLight = mb[11] if mb[11] else 256
     mbObj.mail = mb[12]
 
+    msg = None
 
-    if mbObj.mail:
-        print("{},{},{},{},{}".format(mbObj.devName, mbObj.temp, mbObj.lowTemp, mbObj.highTemp, mbObj.tempWarning))
-        if ((mbObj.temp < mbObj.highTemp) and (mbObj.temp > mbObj.lowTemp)):
-            mbObj.tempWarning = False
-            print('temp normal')
-        elif not mbObj.tempWarning and (mbObj.temp < mbObj.lowTemp):
-            mbObj.tempWarning = mail.sendWarning("temperature", "lower", mbObj.devName, mbObj.mail)
-        elif not mbObj.tempWarning and (mbObj.temp > mbObj.highTemp):
-            mbObj.tempWarning = mail.sendWarning("temperature", "higher", mbObj.devName, mbObj.mail)
-            print(mbObj.tempWarning)
+    print("{},{},{},{},{}".format(mbObj.devName, mbObj.temp, mbObj.lowTemp, mbObj.highTemp, mbObj.tempWarning))
+    if ((mbObj.temp < mbObj.highTemp) and (mbObj.temp > mbObj.lowTemp)):
+        mbObj.tempWarning = False
+        print('temp normal')
+    elif not mbObj.tempWarning and (mbObj.temp < mbObj.lowTemp):
+        if mbObj.mail:
+            mbObj.tempWarning, msg = mail.sendWarning("temperature", "lower", mbObj.devName, mbObj.mail)
+        else:
+            mbObj.tempWarning = True
+            msg = "System Warning: Temperature is lower than allowed interval"
+    elif not mbObj.tempWarning and (mbObj.temp > mbObj.highTemp):
+        if mbObj.mail:
+            mbObj.tempWarning, msg = mail.sendWarning("temperature", "higher", mbObj.devName, mbObj.mail)
+        else:
+            mbObj.tempWarning = True
+            msg = "System Warning: Temperature is higher than allowed interval"
 
-        if (mbObj.light < mbObj.highLight) and (mbObj.light > mbObj.lowLight):
-            mbObj.lightWarning = False
-            print("light normal")
-        elif not mbObj.lightWarning and (mbObj.light < mbObj.lowLight):
-            mbObj.lightWarning = mail.sendWarning("light level", "lower", mbObj.devName, mbObj.mail)
-        elif not mbObj.lightWarning and (mbObj.light > mbObj.highLight):
-            mbObj.lightWarning = mail.sendWarning("light level", "higher", mbObj.devName, mbObj.mail)
+    if (mbObj.light < mbObj.highLight) and (mbObj.light > mbObj.lowLight):
+        mbObj.lightWarning = False
+        print("light normal")
+    elif not mbObj.lightWarning and (mbObj.light < mbObj.lowLight):
+        if mbObj.mail:
+            mbObj.lightWarning, msg = mail.sendWarning("light level", "lower", mbObj.devName, mbObj.mail)
+        else:
+            mbObj.lightWarning = True
+            msg = "System Warning: light level is lower than allowed interval"
+    elif not mbObj.lightWarning and (mbObj.light > mbObj.highLight):
+        if mbObj.mail:
+            mbObj.lightWarning, msg = mail.sendWarning("light level", "higher", mbObj.devName, mbObj.mail)
+        else:
+            mbObj.lightWarning = True
+            msg = "System Warning: light level is higher than allowed interval"
+    if msg:
+        print(db.dbInsert('event', mbObj, msg))

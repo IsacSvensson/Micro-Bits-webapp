@@ -55,7 +55,7 @@
                 {% if microbit['room'] == thisRoom['id'] %}
                     <div class="microbit-container">
                         <div class="inner-mb">
-                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
+                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{% if microbit['name'] %}{{ microbit['name'] }}{% else %}{{ microbit['id'] }}{% endif %}</a></p>
                         </div>
                         <div class="inner-mb">
                             <div><a class="mb-spec" href="{{ url_for('room.deleteMicroBit', id=microbit['id'], room=thisRoom['id']) }}">Remove</a></div>
@@ -69,11 +69,11 @@
                             <select name="microbit" id="microbit">
                                 {% for microbit in microbits %}
                                     {% if microbit['room'] != thisRoom['id'] %}
-                                    <option value="{{ microbit['id'] }}">{{ microbit['id'] }}</option>
+                                    <option value="{{ microbit['id'] }}">{% if microbit['name'] %}{{ microbit['name'] }}{% else %}{{ microbit['id'] }}{% endif %}</option>
                                     {% endif %}
                                 {% endfor %}
                             </select>
-                    </div>
+                    </div>  
                     <div class="inner-mb">
                         <div>
                             <input type="submit" value="Add microbit">

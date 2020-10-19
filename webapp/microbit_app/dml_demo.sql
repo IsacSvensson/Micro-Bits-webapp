@@ -18,7 +18,7 @@ INSERT INTO microbit
     ('id', 'room', 'temp', 'light', 'position_x', 'position_y', 'status')
 VALUES
     ("gozip", 1, 25, 100, 4, 2, "Active"),
-    ("vizup", 1, 28, 87, 1.7, 4.8, "Active"),
+    ("vizup", 1, 23, 17, 1.7, 4.8, "Active"),
     ("empty", 1, 0, 0, 0, 0, "Not active");
 
 INSERT INTO history 

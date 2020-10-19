@@ -8,7 +8,7 @@ def get_db():
     db = sqlite3.connect("./../webapp/instance/microbit_app.sqlite")
     return db
 
-def dbInsert(what, obj):
+def dbInsert(what, obj, msg = None):
     """
     Input: (string) what: string that tells function what to insert,
     MicroBit-object\n
@@ -34,6 +34,8 @@ def dbInsert(what, obj):
             else:
                 c.execute("INSERT INTO history (microbit) VALUES (?);", obj.devName)
                 c.execute("UPDATE microbit SET status = 'Not active' WHERE id = ?;", (obj.devName,))
+        elif what == 'event' and msg:
+            c.execute("INSERT INTO warning_event (microbit, msg) VALUES (?, ?);", (obj.devName, msg,))
     db.commit()
 
 def dbUpdate(obj, date, what = None):

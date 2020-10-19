@@ -40,3 +40,9 @@ def history():
     db = get_db()
     history = db.execute("SELECT * FROM history ORDER BY date DESC;")
     return render_template('monitor/history.html', history=history)
+
+@bp.route('/events')
+def events():
+    db = get_db()
+    events = db.execute("SELECT * FROM warning_event ORDER BY date DESC;")
+    return render_template('monitor/events.html', events=events)

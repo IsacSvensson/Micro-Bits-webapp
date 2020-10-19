@@ -27,10 +27,7 @@ def sendWarning(what, level, microbit, receiver_address):
     message['From'] = sender
 
     message['To'] = receiver_address
-    name = 'gozip'
-    what = 'temperature'
-    level = 'higher'
-    message['Subject'] = 'System Warning: {} is {} than allowed interval on microbit: {}.'.format(what, level, name)   #The subject line
+    message['Subject'] = 'System Warning: {} is {} than allowed interval on microbit: {}.'.format(what, level, microbit)   #The subject line
     message.attach(MIMEText(mail_content, 'plain'))
     #Create SMTP session for sending the mail
     try:
@@ -44,4 +41,4 @@ def sendWarning(what, level, microbit, receiver_address):
     session.sendmail(sender, receiver_address, text)
     session.quit()
     print('Warning sent to {}'.format(receiver_address))
-    return True
+    return True, message['Subject']

@@ -47,6 +47,15 @@ CREATE TABLE history (
     FOREIGN KEY ('microbit') REFERENCES microbit('id')
 );
 
+CREATE TABLE warning_event (
+    'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'date' DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    'microbit' CHAR(5) NOT NULL,
+    'msg' VARCHAR(100),
+
+    FOREIGN KEY ('microbit') REFERENCES microbit('id')
+);
+
 CREATE TRIGGER delete_old_history AFTER INSERT ON history
 BEGIN
     DELETE FROM history WHERE date < DATE('now', '-14 day');

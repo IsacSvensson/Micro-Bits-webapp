@@ -31,7 +31,7 @@
                 {% if microbit['room'] == rooms[0]['id'] %}
                     <div class="microbit-container">
                         <div class="inner-mb">
-                            <p class="mb-name" id="mb1-name"><span class="dot" id="{{ microbit['id'] }}"></span><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
+                            <p class="mb-name" id="mb1-name"><span class="dot" id="{{ microbit['id'] }}"></span><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{% if microbit['name'] %}{{ microbit['name'] }}{% else %}{{ microbit['id'] }}{% endif %}</a></p>
                         </div>
                         <div class="inner-mb">
                             <div><p class="mb-spec">Status: </p><p class="inner-p" id="{{microbit['id']}}-status">{{ microbit['status'] }}</p></div>

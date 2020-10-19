@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<p style="visibility: hidden;">{% block title %}{{ thisMb['id'] }}{% endblock %}</p>
+<p style="visibility: hidden;">{% block title %}{% if thisMb['name'] %}{{ thisMb['name'] }}{% else %}{{ thisMb['id'] }}{% endif %}{% endblock %}</p>
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@
             </div>  
             
             <div class="box-cell box2" >
-                <div class="box-top">Configuration of Micro:Bit - {{ thisMb['id'] }}</div>
+                <div class="box-top">Configuration of Micro:Bit - {% if thisMb['name'] %}{{ thisMb['name'] }}{% else %}{{ thisMb['id'] }}{% endif %}</div>
                 <div class="config">
                     <form action="/microbit/{{ thisMb['id'] }}" method="POST">
                     <table>
@@ -71,7 +71,7 @@
                 {% for microbit in microbits %}
                     <div class="microbit-container">
                         <div class="inner-mb">
-                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{{ microbit['id'] }}</a></p>
+                            <p class="mb-name" id="mb1-name"><a href="{{ url_for('microbit.configMicroBit', id = microbit['id']) }}">{% if microbit['name'] %}{{ microbit['name'] }}{% else %}{{ microbit['id'] }}{% endif %}</a></p>
                         </div>
                         <div class="inner-mb">
                         </div>

@@ -9,7 +9,7 @@
     <body>
         <center>
             <div class="history-box">  
-                <div class="box-top">History</div>
+                <div class="box-top"><b>History</b> / <a href="{{ url_for('monitor.events')}}">Events</a></div>
                 <input type="text" id="filter-s" onkeyup="filter()" placeholder="Filter on Micro:bit's ID" title="Filter result">
                 <table id="history-table">
                     <tr class="table-header">

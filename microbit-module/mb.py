@@ -102,6 +102,6 @@ class MicroBit:
         self.maxLight = None
 
     def __repr__(self):
-        return "Device name: {}\nTemperature: {}\nLight: {}".format(
-            self.devName, self.temp, self.light
+        return "Device name: {}\nTemperature: {}\nLight: {}\nTemp warning active: {}\nLight warning active: {}".format(
+            self.devName, self.temp, self.light, self.tempWarning, self.lightWarning
             )

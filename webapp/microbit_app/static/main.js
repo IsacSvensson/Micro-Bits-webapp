@@ -47,7 +47,7 @@ loadCanvas = (w, h, dots) => {
     dots.forEach(element => {
         ctx.fillStyle = element[0];
         ctx.beginPath();
-        ctx.ellipse(element[1] * 100, element[2] * 100, 3, 3, Math.PI/4, 0, 2*Math.PI);
+        ctx.ellipse(element[1] * 100, element[2] * 100, 6, 6, Math.PI/4, 0, 2*Math.PI);
         ctx.fill();
     setInterval(sendMsg, 1000)
     });
