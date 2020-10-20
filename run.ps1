@@ -23,12 +23,12 @@ cd webapp
 if ($response -eq 1 -or $response -eq 'n') {
     start-process -WindowStyle hidden python "..\microbit-module\main.py"
     start-process -WindowStyle hidden python "..\websocket\websocket.py"
-    Start-Process -WindowStyle hidden PowerShell -ArgumentList 'flask run --host=0.0.0.0'
+    Start-Process -WindowStyle hidden PowerShell -ArgumentList "waitress-serve --port=5000 --call 'microbit_app:create_app'"
 }
 else{
     start-process python "..\microbit-module\main.py"
     start-process python "..\websocket\websocket.py"
-    Start-Process PowerShell -ArgumentList 'flask run --host=0.0.0.0'
+    Start-Process PowerShell -ArgumentList "waitress-serve --port=5000 --call 'microbit_app:create_app'"
 }
 $title2   = 'Microbit Monitoring Web app is running'
 $msg2     = 'Do you want to turn off the app?'
