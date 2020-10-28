@@ -52,6 +52,7 @@ Below is the dependencies in Python for this app listed:
 - Flask==1.1.2
 - websockets==8.1
 - pyserial==3.4
+- waitress==1.4.4
 
 
 ### Installation
@@ -60,11 +61,11 @@ Installation instructions are writen for Windows Powershell.
 
 1. Clone the repo
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/IsacSvensson/Micro-Bits-webapp.git
 ```
 2. Install dependencies
 ```sh
-pip install click pytest Werkzeug Flask websockets pyserial
+pip install click pytest Werkzeug Flask websockets pyserial waitress
 ```
 3. Config what ports you are using for Micro:Bits (Pre-configured for Windows ports COM1 - COM10)<br>
 ("./microbit-module/config.json")

@@ -118,12 +118,14 @@ def checkIntervals(mbObj):
     elif not mbObj.tempWarning and (mbObj.temp < mbObj.lowTemp):
         if mbObj.mail:
             mbObj.tempWarning, msg = mail.sendWarning("temperature", "lower", mbObj.devName, mbObj.mail)
+            msg = "".join(["Sent mail: ", msg])
         else:
             mbObj.tempWarning = True
             msg = "System Warning: Temperature is lower than allowed interval"
     elif not mbObj.tempWarning and (mbObj.temp > mbObj.highTemp):
         if mbObj.mail:
             mbObj.tempWarning, msg = mail.sendWarning("temperature", "higher", mbObj.devName, mbObj.mail)
+            msg = "".join(["Sent mail: ", msg])
         else:
             mbObj.tempWarning = True
             msg = "System Warning: Temperature is higher than allowed interval"
@@ -134,12 +136,14 @@ def checkIntervals(mbObj):
     elif not mbObj.lightWarning and (mbObj.light < mbObj.lowLight):
         if mbObj.mail:
             mbObj.lightWarning, msg = mail.sendWarning("light level", "lower", mbObj.devName, mbObj.mail)
+            msg = "".join(["Sent mail: ", msg])
         else:
             mbObj.lightWarning = True
             msg = "System Warning: light level is lower than allowed interval"
     elif not mbObj.lightWarning and (mbObj.light > mbObj.highLight):
         if mbObj.mail:
             mbObj.lightWarning, msg = mail.sendWarning("light level", "higher", mbObj.devName, mbObj.mail)
+            msg = "".join(["Sent mail: ", msg])
         else:
             mbObj.lightWarning = True
             msg = "System Warning: light level is higher than allowed interval"

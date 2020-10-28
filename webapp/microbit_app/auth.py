@@ -53,8 +53,8 @@ def delete(id):
     if request.method == 'POST':
         if not (db.execute("SELECT id FROM user WHERE id = ?;", (id,)).fetchone()):
             error = "No user with this id"
-        elif (len(db.execute("SELECT id FROM user;").fetchall()) == 2):
-            error = len(db.execute("SELECT id FROM user;").fetchall())
+        elif (len(db.execute("SELECT id FROM user;").fetchall()) <= 1):
+            error = "You can not remove the last user"
         else:
             db.execute('DELETE FROM user WHERE id = ?', (id,))
             db.commit()
