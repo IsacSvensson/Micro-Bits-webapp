@@ -4,10 +4,6 @@ $options = '&Yes', '&No'
 $default = 1  # 0=Yes, 1=No
 $ran = 0
 
-$env:FLASK_ENV = "development"
-$env:FLASK_APP = "microbit_app"
-$env:FLASK_DEBUG = "true"
-
 do {
     if ($ran -eq 0) {
         $response = $Host.UI.PromptForChoice($title1, $msg1, $options, $default)
